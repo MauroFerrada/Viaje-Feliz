@@ -59,18 +59,51 @@ class Viaje {
     return false;
   }
 
-  public function modificarPasajero($numDoc, $nombre = null, $apellido = null) {
-    foreach ($this->pasajeros as $key => $value) {
-      if ($value["numDoc"] == $numDoc) {
-        if ($nombre != null) {
-          $this->pasajeros[$key]["nombre"] = $nombre;
-        }
-        if ($apellido != null) {
-          $this->pasajeros[$key]["apellido"] = $apellido;
-        }
-        return true;
-      }
+
+  
+  
+  public function modificarPasajerox($indice, $nombre, $apellido, $numDoc) {
+    if($indice >= 0 && $indice < count($this->pasajeros)) {
+      $pasajero = [
+        'nombre' => $nombre,
+        'apellido' => $apellido,
+        'numDoc' => $numDoc
+      ];
+      $this->pasajeros[$indice] = $pasajero;
+      return true;
+    } else {
+      return false;
     }
-    return false;
+  }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  public function mostrarDatos() {
+    echo "Código: " . $this->codigoViaje . "\n";
+    echo "Destino: " . $this->destino . "\n";
+    echo "Cantidad máxima de pasajeros: " . $this->cantMaxPasajeros . "\n";
+    echo "Pasajeros: \n";
+    $pasajeros = $this->pasajeros;
+    if(empty($pasajeros)) {
+        echo "No hay pasajeros en el viaje<\n>";
+      } else {
+        echo "\nPasajeros:\n";
+        foreach($pasajeros as $index => $pasajero) {
+          echo "Pasajero " . ($index + 1) . ":\n";
+          echo "Nombre: " . $pasajero['nombre'] . "\n";
+          echo "Apellido: " . $pasajero['apellido'] . "\n";
+          echo "Número de documento: " . $pasajero['numDoc'] . "\n\n";
+        }
+      }
+
+    //foreach($this->pasajeros as $key => $value) {
+     // echo "- " . $value["nombre"] . " " . $value["apellido"] . " (" . $value["numDoc"] . ")\n";
+   // }
   }
 }
