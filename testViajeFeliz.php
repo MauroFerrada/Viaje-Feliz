@@ -42,7 +42,9 @@ while($opcion != 4) {
         echo "2. Modificar destino\n";
         echo "3. Modificar cantidad máxima de pasajeros\n";
         echo "4. Modificar datos de un pasajero\n";
-        echo "5. Salir\n\n";
+        echo "5. Agregar pasajero\n";
+        echo "6. Eliminar pasajero\n";
+        echo "7. Salir\n\n";
 
         $subopcion = readline("Seleccione una opción: ");
 
@@ -72,7 +74,7 @@ while($opcion != 4) {
               echo "Debe haber ingresado una cantidad maxima de pasajeros anteriormente \n";
             }
             break;
-            case 4:
+          case 4:
                 if ($codigoViaje != null){
                   $indicePasajero = readline("Ingrese el indice del pasajero que desea modificar: ");
                 $nombre = readline("Ingrese el nuevo nombre: ");
@@ -84,6 +86,27 @@ while($opcion != 4) {
                   echo "debe haber ingresado un pasajero anteriormente \n";
                 }
           case 5:
+            echo "Ingrese el nombre del pasajero:";
+            $nombre = trim(fgets(STDIN));
+            echo "ingrese el apellido:";
+            $apellido = trim(fgets(STDIN));
+            echo "ingrese el numero de documento del pasajero:";
+            $numDoc = trim(fgets(STDIN));
+            $pasajeros = array(
+              'nombre' => $nombre,
+              'apellido' => $apellido,
+              'numDoc' => $numDoc
+            );
+            $viaje -> agregarPasajero($nombre, $apellido, $numDoc);
+            echo "Pasajero agregado exitosamente.\n\n";
+            break;
+          case 6:
+            echo "Ingrese el numero de documento del pasajero que desea eliminar";
+            $numDoc = trim(fgets(STDIN));
+            $viaje -> borrarPasajero($numDoc);
+            echo "Pasajero eliminado exitosamente\n\n";
+            break;
+          case 7:
             break;
           default:
             echo "Opción inválida\n";
@@ -93,7 +116,8 @@ while($opcion != 4) {
       break;
     case 3:
       if ($codigoViaje != null) {
-        $viaje->mostrarDatos();
+        $viaje->mostrarPasajeros();
+        echo $viaje;
         break;
       }else{
         echo "Debe haber ingresado un viaje anteriormente \n";

@@ -84,26 +84,42 @@ class Viaje {
   
   
   
-  public function mostrarDatos() {
-    echo "Código: " . $this->codigoViaje . "\n";
-    echo "Destino: " . $this->destino . "\n";
-    echo "Cantidad máxima de pasajeros: " . $this->cantMaxPasajeros . "\n";
-    echo "Pasajeros: \n";
-    $pasajeros = $this->pasajeros;
-    if(empty($pasajeros)) {
-        echo "No hay pasajeros en el viaje<\n>";
-      } else {
-        echo "\nPasajeros:\n";
-        foreach($pasajeros as $index => $pasajero) {
-          echo "Pasajero " . ($index + 1) . ":\n";
-          echo "Nombre: " . $pasajero['nombre'] . "\n";
-          echo "Apellido: " . $pasajero['apellido'] . "\n";
-          echo "Número de documento: " . $pasajero['numDoc'] . "\n\n";
-        }
-      }
+ // public function mostrarDatos() {
+   // echo "Código: " . $this->codigoViaje . "\n";
+   // echo "Destino: " . $this->destino . "\n";
+   // echo "Cantidad máxima de pasajeros: " . $this->cantMaxPasajeros . "\n";
+    //echo "Pasajeros: \n";
+   // $pasajeros = $this->pasajeros;
+    //if(empty($pasajeros)) {
+     //   echo "No hay pasajeros en el viaje<\n>";
+     // } else {
+      //  echo "\nPasajeros:\n";
+      //  foreach($pasajeros as $index => $pasajero) {
+       //   echo "Pasajero " . ($index + 1) . ":\n";
+       //   echo "Nombre: " . $pasajero['nombre'] . "\n";
+       //   echo "Apellido: " . $pasajero['apellido'] . "\n";
+      //    echo "Número de documento: " . $pasajero['numDoc'] . "\n\n";
+       // }
+    //  }
 
     //foreach($this->pasajeros as $key => $value) {
      // echo "- " . $value["nombre"] . " " . $value["apellido"] . " (" . $value["numDoc"] . ")\n";
    // }
+ // }
+
+
+  public function __toString()
+  {
+    return "Codigo de viaje: " . $this->codigoViaje . "\n" . "Destino del viaje: " . $this->destino . "\n" . "Cantidad máxima de pasajeros: " . $this->cantMaxPasajeros . "\n";
   }
+
+  public function mostrarPasajeros() {
+    $pasajeros = $this->pasajeros;
+    $cadena = "   PASAJEROS \n";
+    foreach($pasajeros as $index => $pasajero) {
+      $cadena .= "Pasajero " . ($index + 1) . "\n" . "Nombre: " . $pasajero['nombre'] . "\n" . "Apellido: " . $pasajero['apellido'] . "\n" . "Número de Documento: " . $pasajero['numDoc'] . "\n \n";
+    }
+    return $cadena;
+  }
+
 }
