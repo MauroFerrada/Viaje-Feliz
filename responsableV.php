@@ -43,4 +43,19 @@ class ResponsableV {
       public function setnumeroLicencia($numeroLicencia) {
         $this->numeroLicencia = $numeroLicencia;
       }
+
+
+      public function __toString(){
+
+        return "\n      RESPONSABLE A CARGO \n" . 
+
+        "Nro de empleado: " . $this->getnumeroEmpleado() .
+
+         " Lic " . $this->getnumeroLicencia() . 
+
+         "\nNombre: " . $this->getNombre() . 
+
+         " " . $this->getApellido() . "\n";
+
+    }
 }
